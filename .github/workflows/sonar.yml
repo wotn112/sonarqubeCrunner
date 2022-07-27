@@ -16,15 +16,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: create property file
       run: |
-        mkdir build
         echo "sonar.host.url=${{ secrets.SONAR_URL }}" >> sonar-project.properties
         echo "sonar.login=${{ secrets.SONAR_TOKEN }}" >> sonar-project.properties
         echo "sonar.projectKey=$SONAR_PROJECTKEY" >> sonar-project.properties
         echo "sonar.projectName=$GITHUB_REPOSITORY" >> sonar-project.properties
         echo "sonar.sources=$GITHUB_WORKSPACE" >> sonar-project.properties
-        echo "sonar.cfamily.compile-commands=compile_commands.json" >> sonar-project.properties
         echo "sonar.cfamily.build-wrapper-output=${GITHUB_WORKSPACE}/build" >> sonar-project.properties
         echo "sonar.sourceEncoding=UTF-8" >> sonar-project.properties
+        mkdir build
     - name: build sonarqube
       run: build-wrapper-linux-x86-64 --out-dir ${GITHUB_WORKSPACE}/build make clean build
     - name: scanner start
