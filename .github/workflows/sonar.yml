@@ -7,7 +7,8 @@ on:
  
 name: SonarQube
 env:
-  SONAR_PROJECTKEY: $GITHUB_REPOSITORY_OWNER
+  SONAR_PROJECTKEY: $GITHUB_REPOSITORY
+  SONAR_CSCAN: /opt/build-wrapper
 jobs:
   sonarQubeTrigger:
     name: SonarQube Scan
@@ -27,6 +28,6 @@ jobs:
       run: |
         mkdir build
         cmake -S . -B build
-        build-wrapper-linux-x86-64 --out-dir ${GITHUB_WORKSPACE}/build cmake --build build/ --config Release
+        $SONAR_CSCAN/build-wrapper-linux-x86-64 --out-dir ${GITHUB_WORKSPACE}/build cmake --build build/ --config Release
     - name: scanner start
       run: sonar-scanner
