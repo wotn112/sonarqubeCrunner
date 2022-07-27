@@ -13,7 +13,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      SONAR_SCANNER_VERSION: 4.7
+      SONAR_SCANNER_VERSION: 4.7.0.2747
       SONAR_SERVER_URL: ${{ secrets.SONAR_URL }}
       BUILD_WRAPPER_OUT_DIR: sonar_build
       SONAR_PROJECTKEY: cFamily
