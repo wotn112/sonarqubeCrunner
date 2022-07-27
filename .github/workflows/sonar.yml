@@ -7,7 +7,7 @@ on:
  
 name: SonarQube
 env:
-  SONAR_PROJECTKEY: $GITHUB_REPOSITORY_OWNER
+  SONAR_PROJECTKEY: cfamily
   SONAR_CSCAN: /opt/build-wrapper
   SONAR_SCAN: /opt/sonar-scan/
 jobs:
