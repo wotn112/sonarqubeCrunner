@@ -7,7 +7,7 @@ on:
  
 name: SonarQube
 env:
-  SONAR_PROJECTKEY: $GITHUB_REPOSITORY
+  SONAR_PROJECTKEY: $GITHUB_REPOSITORY_OWNER
 jobs:
   sonarQubeTrigger:
     name: SonarQube Scan
