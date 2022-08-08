@@ -4,31 +4,8 @@ on:
       - "sonarscan"
     paths:
       - ".github/workflows/sonar.yml"
- 
-name: SonarQube
-env:
-  SONAR_PROJECTKEY: cfamily
-  SONAR_CSCAN: /opt/build-wrapper
-  SONAR_SCAN: /opt/sonar-scan/
 jobs:
-  sonarQubeTrigger:
-    name: SonarQube Scan
-    runs-on: [self-hosted, sonar]
-    steps:
-    - uses: actions/checkout@v3
-    - name: create property file
-      run: |
-        echo "sonar.host.url=${{ secrets.SONAR_URL }}" >> sonar-project.properties
-        echo "sonar.login=${{ secrets.SONAR_TOKEN }}" >> sonar-project.properties
-        echo "sonar.projectKey=$SONAR_PROJECTKEY" >> sonar-project.properties
-        echo "sonar.projectName=$GITHUB_REPOSITORY" >> sonar-project.properties
-        echo "sonar.sources=$GITHUB_WORKSPACE" >> sonar-project.properties
-        echo "sonar.cfamily.build-wrapper-output=${GITHUB_WORKSPACE}/build" >> sonar-project.properties
-        echo "sonar.sourceEncoding=UTF-8" >> sonar-project.properties
-    - name: build sonarqube
-      run: |
-        mkdir build
-        cmake -S . -B build
-        $SONAR_CSCAN/build-wrapper-linux-x86-64 --out-dir ${GITHUB_WORKSPACE}/build cmake --build build/ --config Release
-    - name: scanner start
-      run: $SONAR_SCAN/bin/sonar-scanner
+  call-workflow-1-in-local-repo:
+    uses: GitHub_CI/blob/main/templates/sonaver_cfamly.yml@main
+    with:
+      SONAR_PROJECTKEY: test
