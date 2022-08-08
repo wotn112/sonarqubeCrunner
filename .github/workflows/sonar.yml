@@ -6,6 +6,6 @@ on:
       - ".github/workflows/sonar.yml"
 jobs:
   call-workflow-1-in-local-repo:
-    uses: GitHub_CI/blob/main/templates/sonaver_cfamly.yml@main
+    uses: /GitHub_CI/blob/main/templates/sonaver_cfamly.yml@main
     with:
       SONAR_PROJECTKEY: test
